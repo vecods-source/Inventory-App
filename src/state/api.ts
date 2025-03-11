@@ -1,14 +1,56 @@
-import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query";
+import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
+
+export interface Product{
+    productId: string;
+    name: string;
+    price: number;
+    rating?: number,
+    stockQuantity: number;
+}
+
+export interface SalesSummary {
+    salesSummaryId: string;
+    totalValue: number;
+    changePercentage?: number;
+    date: string;
+}
+export interface PurchasesSummary{
+    purchaseSummaryId: string;
+    totalPurchased: number;
+    changePercentage?: number;
+    date: string;
+}
+export interface ExpenseSummary{
+    expenseSummaryId: string;
+    totalExpenses: number;
+    date: string;
+}
+export interface ExpenseByCategorySummary{
+    ExpenseByCategorySummaryId: string;
+    category: string;
+    amount: string;
+    date: string;
+}
+export interface DashboardMetrics{
+    popularProducts: Product[];
+    salesSummary: SalesSummary[];
+    purchaseSummary: PurchasesSummary[];
+    expenseSummary: ExpenseSummary[];
+    expenseByCategorySummary: ExpenseByCategorySummary[];
+}
 
 export const api = createApi({
-    baseQuery: fetchBaseQuery({baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL}),
+    baseQuery: fetchBaseQuery({baseUrl: process.env.NEXT_PUBLIC_API_KEY}),
     reducerPath: "api",
-    tagTypes: [],
+    tagTypes: ["DashboardMetrics"],
     endpoints: (build) => ({
-        getExample: build.query({
-            query: () => 'example-endpoint',
+        getDashboardMetrics: build.query<DashboardMetrics, void>({
+           query: ()=> "/dashboard",
+           providesTags: ["DashboardMetrics"]
         }),
     }),
 })
 
-export const {} = api;
+export const {
+    useGetDashboardMetricsQuery,
+} = api;
