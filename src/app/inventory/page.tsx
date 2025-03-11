@@ -5,7 +5,7 @@ import Header from "@/app/(components)/Header";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
 const columns: GridColDef[] = [
-  { field: "productId", headerName: "ID", width: 90 },
+  { field: "productId", headerName: "ID", width: 230 },
   { field: "name", headerName: "Product Name", width: 200 },
   {
     field: "price",
@@ -51,8 +51,7 @@ const Inventory = () => {
         rows={products}
         columns={columns}
         getRowId={(row) => row.productId}
-        checkboxSelection
-        className="bg-white shadow rounded-lg border border-gray-200 mt-5 !text-gray-700"
+        className="bg-white shadow rounded-lg border border-gray-200 mt-5 !text-gray-700 cursor-pointer"
       />
     </div>
   );
