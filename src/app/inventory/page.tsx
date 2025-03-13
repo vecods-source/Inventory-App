@@ -52,6 +52,17 @@ const Inventory = () => {
         columns={columns}
         getRowId={(row) => row.productId}
         className="bg-white shadow rounded-lg border border-gray-200 mt-5 !text-gray-700 cursor-pointer"
+        sx={{
+          "& .MuiDataGrid-columnHeaders": {
+            color: "rgb(31 41 55)",
+            fontWeight: "bold",
+          },
+          "& .MuiDataGrid-footerContainer": {
+            color: "rgb(31 41 55)",
+            fontWeight: "bold",
+            backgroundColor: "white",
+          },
+        }}
       />
     </div>
   );
